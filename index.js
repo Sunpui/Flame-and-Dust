@@ -1,13 +1,3 @@
-/*
-950164 - Dust debuff
-950165 - Flame debuff
-1203110998 Dust right front paw first
-1203111018 Flame right front paw; Dust left front paw first
-1203111012 Flame right front paw first
-1203111013 Dust right front paw; Flame left front paw first
-484.148743,  30.0° ;	403.112885, -150.3° 
-425.205841, -40.0° ;	297.32135 ,  132.3°
-*/
 module.exports = function FlameAndDust(dispatch) {	
 	enabled = false;
 	let debuff = -1;
