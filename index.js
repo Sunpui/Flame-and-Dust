@@ -1,6 +1,7 @@
 module.exports = function FlameAndDust(dispatch) {	
 	enabled = false;
 	let debuff = -1;
+	let skillDebuff;
 	let cid, pid;
 	
 	dispatch.hook('S_ACTION_STAGE', 1, event => {
@@ -8,15 +9,15 @@ module.exports = function FlameAndDust(dispatch) {
 			return;
 		}
 		if (event.skill === 1203110998 || event.skill === 1203111013) { //Dust right front
-			if (debuff !== -1) {
-				console.log("no debuff or debuff appears after animation start");
+			skillDebuff = event;
+			if (debuff === -1) {
 				return;
 			}
 			dustFlame(event, debuff, true);
 		}
 		if (event.skill === 1203111018 || event.skill === 1203111012) { //Flame right front
-			if (debuff !== -1) {
-				console.log("no debuff or debuff appears after animation start");
+			skillDebuff = event;
+			if (debuff === -1) {
 				return;
 			}
 			dustFlame(event, debuff, false);
@@ -34,14 +35,22 @@ module.exports = function FlameAndDust(dispatch) {
 	dispatch.hook('S_LOGIN', 4, event => {	
 		cid = event.cid;
 		pid = event.playerId;
-    });
+ 	  });
 	
 	dispatch.hook('S_ABNORMALITY_BEGIN', 2, event => {
-		if (950164 === event.id) {
-			debuff = 950164;
-		}
-		if (950165 === event.id) {
-			debuff = 950165;
+		if (950164 === event.id || 950165 === event.id) {
+			if(event.target - cid === 0) {
+				debuff = event.id;
+				if (skillDebuff.skill === 1203110998 || skillDebuff.skill === 1203111013) { //Dust right front
+					dustFlame(skillDebuff, debuff, true);
+					return;
+				}
+				if (skillDebuff.skill === 1203111018 || skillDebuff.skill === 1203111012) { //Flame right front
+					dustFlame(skillDebuff, debuff, false);
+					return;
+				}
+				console.log("Something went wrong");
+			}
 		}
 	});	
 	
