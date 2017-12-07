@@ -56,21 +56,21 @@ module.exports = function FlameAndDust(dispatch) {
 			var angle = Math.PI * (-40.0 + skill.w / 8192.0 * 45) / 180;	//skill.w goes from 0 for north, to 8192 for north-east, 16384 for east, -32768 for south, -16384 for west, -8192 for north-west
 			var beaconX = skill.x + Math.cos(angle) * 745.0; //spawn beacon left front
 			var beaconY = skill.y + Math.sin(angle) * 745.0;
-			spawnBeacon(beaconX, beaconY, skill.z, pid);
+			spawnBeacon(beaconX, beaconY, skill.z, pid+201);
 			angle = Math.PI * (132.3 + skill.w / 8192.0 * 45) / 180;
 			beaconX = skill.x + Math.cos(angle) * 617.0; //spawn beacon right back
 			beaconY = skill.y + Math.sin(angle) * 617.0;
-			spawnBeacon(beaconX, beaconY, skill.z, pid+1);
+			spawnBeacon(beaconX, beaconY, skill.z, pid+202);
 		}
 		if ((!dustRight && debuff === 950164) || (dustRight && debuff === 950165)) { //dust front left + player has dust; flame front left + player has flame;
 			var angle = Math.PI * (30.0 + skill.w / 8192.0 * 45) / 180;
 			var beaconX = skill.x + Math.cos(angle) * 804.0; //spawn beacon right front
 			var beaconY = skill.y + Math.sin(angle) * 804.0;
-			spawnBeacon(beaconX, beaconY, skill.z, pid);
+			spawnBeacon(beaconX, beaconY, skill.z, pid+201);
 			angle = Math.PI * (-150.3 + skill.w / 8192.0 * 45) / 180;
 			beaconX = skill.x + Math.cos(angle) * 723.0; //spawn beacon left back
 			beaconY = skill.y + Math.sin(angle) * 723.0;
-			spawnBeacon(beaconX, beaconY, skill.z, pid+1);
+			spawnBeacon(beaconX, beaconY, skill.z, pid+202);
 		}
 		debuff = -1;
 		skillDebuff = {};
