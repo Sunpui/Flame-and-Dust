@@ -30,8 +30,8 @@ module.exports = function FlameAndDust(dispatch) {
 		}
 	});
 	
-	dispatch.hook('S_LOGIN', 4, event => {	
-		cid = event.cid;
+	dispatch.hook('S_LOGIN', 7, event => {	
+		cid = event.guid;
 		pid = event.playerId;
     });
 	
@@ -77,7 +77,7 @@ module.exports = function FlameAndDust(dispatch) {
 	}
 	
 	function spawnBeacon(beaconX, beaconY, beaconZ, id) {
-		dispatch.toClient('S_SPAWN_DROPITEM', 2, {
+		dispatch.toClient('S_SPAWN_DROPITEM', 5, {
 			id: id,
 			x: beaconX,
 			y: beaconY,
